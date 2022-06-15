@@ -1,9 +1,8 @@
 import type { NextPage } from "next";
-import Router from "next/router";
-import Head from "next/head";
+import Link from "next/link";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import { MainLayout } from "./components/MainLayout";
+import styles from "../styles/Home.module.scss";
+import { MainLayout } from "../components/MainLayout";
 
 const Home: NextPage = () => {
   return (
@@ -13,54 +12,40 @@ const Home: NextPage = () => {
       <p className="heading-p">Order roses for your lovely lady</p>
       <main className={styles.main}>
         <div className="tiles-cont">
-          <button
-            className="navButton"
-            onClick={() => Router.push("/categories/HundredRoses")}
-          >
-            <img src="101.jpg" alt="101" />
-            <div className="navBut-title">101 Roses</div>
-          </button>
-          <button
-            className="navButton"
-            onClick={() => Router.push("/categories/FiftyRoses")}
-          >
-            <img src="51.jpeg" alt="51" />
-            <div className="navBut-title">51 Roses</div>
-          </button>
-          <button
-            className="navButton"
-            onClick={() => Router.push("/categories/NineteenRoses")}
-          >
-            <img src="19.jpeg" alt="19" />
-            <div className="navBut-title">19 Roses</div>
-          </button>
-          <button
-            className="navButton"
-            onClick={() => Router.push("/categories/VIP")}
-          >
-            <img src="vip.jpeg" alt="vip" />
-            <div className="navBut-title">VIP</div>
-          </button>
+          <Link href={"/category/rose101"} className="catLink">
+            <a className="category-link">
+              <Image src="/101.jpg" alt="101 roses" width={200} height={200} />
+              <span className="navBut-title">101 Roses</span>
+            </a>
+          </Link>
+          <Link href={"/category/rose51"} className="catLink">
+            <a className="category-link">
+              <Image src="/51.jpeg" alt="51 roses" width={200} height={200} />
+              <span className="navBut-title">51 Roses</span>
+            </a>
+          </Link>
+          <Link href={"/category/rose19"} className="catLink">
+            <a className="category-link">
+              {" "}
+              <Image src="/19.jpeg" alt="19 roses" width={200} height={200} />
+              <span className="navBut-title">19 Roses</span>
+            </a>
+          </Link>
+          <Link href={"/category/roseVIP"} className="catLink">
+            <a className="category-link">
+              {" "}
+              <Image src="/vip.jpeg" alt="VIP roses" width={200} height={200} />
+              <span className="navBut-title">VIP</span>
+            </a>
+          </Link>
         </div>
       </main>
 
-      {/* <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer> */}
       <div className={"image-container"}>
         <Image
-          alt="Mountains"
-          src="/fon.jpeg"
           layout="fill"
+          alt="background"
+          src="/fon.jpeg"
           objectFit="cover"
         />
         <div className="overlay"></div>

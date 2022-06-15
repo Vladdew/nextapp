@@ -1,7 +1,4 @@
-import { useState, FC } from "react";
 import Router from "next/router";
-
-import Link from "next/link";
 
 type MainLayout = {
   title?: string;

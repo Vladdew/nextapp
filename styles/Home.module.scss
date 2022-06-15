@@ -106,13 +106,23 @@
   line-height: 1.5;
 }
 
-@media (max-width: 430px) {
+@media screen and (max-width: 1075px) {
+  .main {
+    width: 530px;
+    position: relative;
+    top: 70px;
+    left: 0;
+  }
+}
+
+@media (max-width: 530px) {
   .grid {
     width: 100%;
     flex-direction: column;
   }
   .main {
     bottom: unset;
+    width: unset;
     background-color: transparent;
   }
 }
