@@ -41,7 +41,7 @@ const Home: NextPage = () => {
         </div>
       </main>
 
-      <div className={"image-container"}>
+      <div className="image-container">
         <Image
           layout="fill"
           alt="background"

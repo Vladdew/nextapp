@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "export": "next export",
     "serve": "concurrently \"npm run dev\" \"npm run mock\"",
     "mock": "json-server -w db.json -p 4200 -d 500",
     "predeploy": "npm run build",
