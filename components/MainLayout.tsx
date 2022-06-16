@@ -1,5 +1,4 @@
 import Router from "next/router";
-
 type MainLayout = {
   title?: string;
   children?: any;
