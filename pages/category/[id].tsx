@@ -58,8 +58,8 @@ export default function Category({ cat: serverCat }: CategoryPageProps) {
             return (
               <li className="goodlist__good" key={good.id}>
                 <Link
-                  href={`/good/[id]`}
-                  as={`/good/${good.id}`}
+                  href={`/api/good/[id]`}
+                  as={`/api/good/${good.id}`}
                   className="catButton"
                 >
                   <a>
