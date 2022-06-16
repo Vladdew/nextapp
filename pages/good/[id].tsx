@@ -68,14 +68,15 @@ interface GoodNextPageContext extends NextPageContext {
   };
 }
 
-Good.getInitialProps = async ({ query, req }: GoodNextPageContext) => {
-  if (!req) return { good: null };
-
+Good.getInitialProps = async (ctx: GoodNextPageContext) => {
+  if (!ctx.req) return { good: null };
   try {
-    const response = await fetch(`${process.env.API_URL}/good/${query.id}`);
+    const response = await fetch(`${process.env.API_URL}/good/${ctx.query.id}`);
     const good: GoodTypes = await response.json();
+
     return { good };
   } catch (error) {
     console.error(error);
+    return {};
   }
 };
