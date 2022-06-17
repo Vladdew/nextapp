@@ -26,6 +26,9 @@ footer {
 
 .city {
   position: relative;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
 }
 
 .city-wrap {
@@ -50,10 +53,13 @@ footer {
 
   &__icon {
     width: 28px;
-    position: absolute;
-    right: -27px;
-    top: -8px;
   }
+}
+
+.wrapper {
+  display: flex;
+  align-items: baseline;
+  margin-left: 5px;
 }
 
 .catImg {
