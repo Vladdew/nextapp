@@ -24,12 +24,17 @@ footer {
   width: 100%;
 }
 
+.city {
+  position: relative;
+}
+
 .city-wrap {
   list-style-type: none;
   display: flex;
   justify-content: space-around;
   color: #d4d4d4;
   background: #0000002b;
+  overflow: hidden;
 }
 
 .city__name {
@@ -42,6 +47,13 @@ footer {
 .weather {
   position: relative;
   z-index: 1;
+
+  &__icon {
+    width: 28px;
+    position: absolute;
+    right: -27px;
+    top: -8px;
+  }
 }
 
 .catImg {
