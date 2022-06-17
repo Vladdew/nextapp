@@ -104,15 +104,13 @@ const Home = ({ cities: serverCities }: any) => {
                     <span className="city__name">{city.name + " "}</span>
                     <span>{temp + " "}</span>
                     <span>{city.weather[0].main}</span>
-                    <Image
+                    <img
+                      className="weather__icon"
                       src={
                         "http://openweathermap.org/img/w/" +
                         city.weather[0].icon +
                         ".png"
                       }
-                      alt="weather"
-                      width={28}
-                      height={28}
                     />
                   </li>
                 );
