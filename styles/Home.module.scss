@@ -110,12 +110,15 @@
   .main {
     width: 530px;
     position: relative;
-    top: 30px;
+    top: 140px;
     left: 0;
   }
 }
 
 @media (max-width: 530px) {
+  .main {
+    top: 130px;
+  }
   .grid {
     width: 100%;
     flex-direction: column;
