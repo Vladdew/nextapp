@@ -99,19 +99,20 @@ const Home = ({ cities: serverCities }: any) => {
             {cities &&
               cities.map((city: any) => {
                 let temp = kelvinToC(city.main.temp);
-                console.log("icon", city.weather[0].icon);
                 return (
                   <li key={city.id} className="city">
                     <span className="city__name">{city.name + " "}</span>
                     <span>{temp + " "}</span>
                     <span>{city.weather[0].main}</span>
-                    <img
-                      className="weather__icon"
+                    <Image
                       src={
                         "http://openweathermap.org/img/w/" +
                         city.weather[0].icon +
                         ".png"
                       }
+                      alt="weather"
+                      width={28}
+                      height={28}
                     />
                   </li>
                 );
