@@ -109,7 +109,7 @@ const Home = ({ cities: serverCities }: any) => {
                       </span>
                       <img
                         className="weather__icon"
-                        src={`http://openweathermap.org/img/w/${city.weather[0].icon}.png`}
+                        src={`https://openweathermap.org/img/w/${city.weather[0].icon}.png`}
                       />
                     </span>
                   </li>
