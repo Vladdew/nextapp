@@ -10,7 +10,7 @@ const nextConfig = {
   },
   reactStrictMode: true,
   env: {
-    API_URL: "http://nextapp-pink-one.vercel.app/api",
+    API_URL: "https://nextapp-pink-one.vercel.app/api",
   },
 };
 
