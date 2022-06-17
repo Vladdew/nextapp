@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,16 +7,55 @@ import { MainLayout } from "../components/MainLayout";
 import { GoodTypes } from "../interfaces/good";
 import { NextPageContext } from "next";
 
-// interface HomePageProps {
-//   location:
-// }
+interface HomePageProps {
+  cities: [
+    {
+      main: { temp: number };
+      weather: any[];
+    }
+  ];
+}
 
-const Home: NextPage = ({ cities }: any) => {
-  console.log(cities);
-  function kelToC(kel: number) {
-    var kTemp = kel;
-    var kelToCel = kTemp - 273.15;
-    return Math.floor(kelToCel) + "\xB0C";
+interface UserData {
+  prevState: null;
+  main: { temp: number };
+  weather: any[];
+}
+
+const Home = ({ cities: serverCities }: any) => {
+  const [cities, setCities] = useState(serverCities);
+
+  useEffect(() => {
+    async function load() {
+      try {
+        let coords = [
+          [50, 30],
+          [50, 33],
+          [50, 34],
+          [50, 35],
+          [50, 36],
+        ];
+
+        const cities = [];
+        for (let i = 0; i < coords.length; i++) {
+          const res = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${coords[i][0]}&lon=${coords[i][1]}&appid=2f67e1eb027e5744d6e6362effb27e78`
+          );
+          const city = await res.json();
+          cities.push(city);
+        }
+        setCities(cities);
+      } catch (error) {
+        console.error(error);
+        return {};
+      }
+    }
+    load();
+  }, []);
+  function kelvinToC(kel: number) {
+    var kelvinTemp = kel;
+    var kelvinToCel = kelvinTemp - 273.15;
+    return Math.floor(kelvinToCel) + "\xB0C";
   }
   return (
     <div className={styles.container}>
@@ -58,7 +98,7 @@ const Home: NextPage = ({ cities }: any) => {
           <ul className="city-wrap">
             {cities &&
               cities.map((city: any) => {
-                let temp = kelToC(city.main.temp);
+                let temp = kelvinToC(city.main.temp);
                 return (
                   <li key={city.id} className="city">
                     <span className="city__name">{city.name + " "}</span>

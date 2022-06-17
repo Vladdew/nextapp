@@ -259,6 +259,10 @@ h1 {
 }
 
 @media screen and (max-width: 530px) {
+  .city-wrap {
+    font-size: 9px;
+    font-size: 14px;
+  }
   .heading-p {
     font-size: 13px;
     padding-left: 40px;
@@ -322,7 +326,10 @@ h1 {
     left: -16%;
   }
 }
-@media screen and (max-width: 373px) {
+@media screen and (max-width: 375px) {
+  .tiles-cont {
+    padding: 0;
+  }
   .category-link {
     width: 100px;
   }
