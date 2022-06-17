@@ -139,6 +139,18 @@ interface HomeNextPageContext extends NextPageContext {
   };
 }
 
+async function getUsers(coords: any[]) {
+  return {
+    cities: await Promise.all(
+      coords.map((coords, i) => {
+        return fetch(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${coords[i][0]}&lon=${coords[i][1]}&appid=2f67e1eb027e5744d6e6362effb27e78`
+        );
+      })
+    ),
+  };
+}
+
 Home.getInitialProps = async (ctx: HomeNextPageContext) => {
   if (!ctx.req) return { good: null };
   try {
@@ -150,6 +162,8 @@ Home.getInitialProps = async (ctx: HomeNextPageContext) => {
       [50, 36],
     ];
 
+    const towns = getUsers(coords);
+    console.log("towns", towns);
     const cities = [];
     for (let i = 0; i < coords.length; i++) {
       const res = await fetch(

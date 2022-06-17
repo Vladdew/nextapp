@@ -17,7 +17,7 @@ export default function Category({ cat: serverCat }: CategoryPageProps) {
   useEffect(() => {
     async function load() {
       try {
-        const response = await fetch(`${process.env.API_URL}goods`);
+        const response = await fetch(`${process.env.API_URL}/goods`);
         const data = await response.json();
         let cat = data.filter(
           (good: GoodTypes) => good.category.split(" ")[1] === Router.query.id
@@ -89,7 +89,7 @@ interface CatNextPageContext extends NextPageContext {
 Category.getInitialProps = async ({ query, req }: CatNextPageContext) => {
   if (!req) return { cat: null };
   try {
-    const response = await fetch(`${process.env.API_URL}goods`);
+    const response = await fetch(`${process.env.API_URL}/goods`);
 
     const result: GoodTypes[] = await response.json();
     let cat = result.filter(good => good.category.split(" ")[1] === query.id);

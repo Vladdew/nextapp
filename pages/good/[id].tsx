@@ -17,7 +17,7 @@ export default function Good({ good: serverGood }: GoodPageProps) {
     async function load() {
       try {
         const response = await fetch(
-          `${process.env.API_URL}good/${Router.query.id}`
+          `${process.env.API_URL}/good/${Router.query.id}`
         );
         const good = await response.json();
         setGood(good);
@@ -71,7 +71,7 @@ interface GoodNextPageContext extends NextPageContext {
 Good.getInitialProps = async (ctx: GoodNextPageContext) => {
   if (!ctx.req) return { good: null };
   try {
-    const response = await fetch(`${process.env.API_URL}good/${ctx.query.id}`);
+    const response = await fetch(`${process.env.API_URL}/good/${ctx.query.id}`);
     const good: GoodTypes = await response.json();
 
     return { good };
