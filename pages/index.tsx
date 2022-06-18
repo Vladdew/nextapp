@@ -22,41 +22,35 @@ interface UserData {
   weather: any[];
 }
 
+let coords = [
+  [50, 30],
+  [50, 33],
+  [50, 34],
+  [50, 35],
+  [50, 36],
+];
+
 const Home = ({ cities: serverCities }: any) => {
   const [cities, setCities] = useState(serverCities);
 
   useEffect(() => {
     async function load() {
       try {
-        let coords = [
-          [50, 30],
-          [50, 33],
-          [50, 34],
-          [50, 35],
-          [50, 36],
-        ];
-
-        const cities = [];
-        for (let i = 0; i < coords.length; i++) {
-          const res = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${coords[i][0]}&lon=${coords[i][1]}&appid=2f67e1eb027e5744d6e6362effb27e78`
-          );
-          const city = await res.json();
-          cities.push(city);
-        }
-        setCities(cities);
+        const data = await fethchCities(coords);
+        setCities(data.cities);
       } catch (error) {
         console.error(error);
-        return {};
       }
     }
     load();
   }, []);
+
   function kelvinToC(kel: number) {
     var kelvinTemp = kel;
     var kelvinToCel = kelvinTemp - 273.15;
     return Math.floor(kelvinToCel) + "\xB0C";
   }
+
   return (
     <div className={styles.container}>
       <MainLayout title={"Goods title"} />
@@ -139,13 +133,16 @@ interface HomeNextPageContext extends NextPageContext {
   };
 }
 
-async function getUsers(coords: any[]) {
+async function fethchCities(coords: any[]) {
   return {
     cities: await Promise.all(
-      coords.map((coords, i) => {
-        return fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${coords[i][0]}&lon=${coords[i][1]}&appid=2f67e1eb027e5744d6e6362effb27e78`
+      coords.map(async coord => {
+        const data = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${coord[0]}&lon=${coord[1]}&appid=2f67e1eb027e5744d6e6362effb27e78`
         );
+
+        const res = await data.json();
+        return res;
       })
     ),
   };
@@ -154,26 +151,8 @@ async function getUsers(coords: any[]) {
 Home.getInitialProps = async (ctx: HomeNextPageContext) => {
   if (!ctx.req) return { good: null };
   try {
-    let coords = [
-      [50, 30],
-      [50, 33],
-      [50, 34],
-      [50, 35],
-      [50, 36],
-    ];
-
-    const towns = getUsers(coords);
-    console.log("towns", towns);
-    const cities = [];
-    for (let i = 0; i < coords.length; i++) {
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${coords[i][0]}&lon=${coords[i][1]}&appid=2f67e1eb027e5744d6e6362effb27e78`
-      );
-      const location = await res.json();
-      cities.push(location);
-    }
-
-    return { cities };
+    const data = await fethchCities(coords);
+    return data.cities;
   } catch (error) {
     console.error(error);
     return {};

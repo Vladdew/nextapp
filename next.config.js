@@ -4,13 +4,13 @@ const nextConfig = {
   //   return [
   //     {
   //       source: "/api/:path*",
-  //       destination: "https://magenta-malabi-98aec4.netlify.app/:path*",
+  //       destination: "https://nextapp-pink-one.vercel.app/:path*",
   //     },
   //   ];
   // },
   reactStrictMode: true,
   env: {
-    API_URL: "https://magenta-malabi-98aec4.netlify.app/api",
+    API_URL: "http://localhost:3000/api",
   },
 };
 
